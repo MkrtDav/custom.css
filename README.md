@@ -4,7 +4,7 @@ Monorepo for stakeholders.cc and related projects.
 
 ```
 apps/
-  web/   Front end (static site) -> Cloudflare Pages
+  web/   stakeholders.cc + italy.stakeholders.cc (one Worker, static files in public/, italy files in public/italy/)
   api/   Back end (Cloudflare Worker) -> api.stakeholders.cc
 docs/    Deployment and architecture notes
 custom.css   Original stylesheet (kept at root; may be linked by URL)
