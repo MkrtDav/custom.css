@@ -1,0 +1,9 @@
+{
+  "name": "stakeholders-web",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "." },
+  "routes": [
+    { "pattern": "stakeholders.cc", "custom_domain": true },
+    { "pattern": "www.stakeholders.cc", "custom_domain": true }
+  ]
+}
