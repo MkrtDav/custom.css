@@ -107,6 +107,10 @@ ol.flow>li:not(:last-child)::before{content:"";position:absolute;left:21px;top:4
 .keys{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
 .keys i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.ready-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.ready-bar span{display:block;height:100%}
+.r1{background:var(--c3)}.r2{background:var(--c4)}.r3{background:var(--c5)}
+.r1t{color:var(--c3)!important}.r2t{color:var(--est)!important}.r3t{color:var(--c5)!important}
 .src{font-size:13.5px;display:flex;flex-direction:column;gap:6px}
 .src a{color:var(--rule);overflow-wrap:anywhere}
 footer{color:var(--mute);font-size:13px}
@@ -148,6 +152,40 @@ footer{color:var(--mute);font-size:13px}
       <p>The test lab's queue, ADM's review of the lab result, and ADM's scheduling of the production check. We can prepare for them but not speed them up.</p>
     </div>
   </div>
+</section>
+
+<section aria-labelledby="ready">
+  <h2 id="ready">How much of the implementation can start now</h2>
+  <p class="sub">Share of the technical and product effort in the 147 register rows that need Digitain build work, as of 17 November 2026. Each of 15 work packages is weighted by its estimated effort, so a large package counts for more than a small one.</p>
+  <div class="ready-bar" role="img" aria-label="25 percent of the effort is clear to start, 28 percent is clear but needs outside input, 47 percent is still unclear"><span class="r1" style="width:25%"></span><span class="r2" style="width:28%"></span><span class="r3" style="width:47%"></span></div>
+  <div class="cards">
+    <div class="card"><span class="big r1t">25%</span><h3>Clear: can start now</h3><p>The requirement is fully described and nothing from ADM or Netbet is needed to begin. Examples: sending a bet to ADM and debiting only after its code returns, account records and 10-year retention, stake and odds rules, bonus status shown to the player, ADM reports, one UTC time source.</p></div>
+    <div class="card"><span class="big r2t">28%</span><h3>Clear, needs outside input</h3><p>We know what to build, but we need something from ADM, Sogei or Netbet first: connection details, certificates, a test environment, or Netbet's confirmation of values and policies.</p></div>
+    <div class="card"><span class="big r3t">47%</span><h3>Still unclear</h3><p>The requirement or the build is not settled yet. Either the platform's current coverage is still to be checked, or an open question to Netbet or ADM is unresolved, or the responsible-gaming measures still await agreement with Netbet and product.</p></div>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Work package</th><th class="num2">Share of effort</th><th class="num2">Clear</th><th class="num2">Outside input</th><th class="num2">Unclear</th></tr></thead>
+      <tbody>
+        <tr><td>Gaming-account adapter and account flows (PACG)</td><td class="num2">17%</td><td class="num2">29%</td><td class="num2">54%</td><td class="num2">18%</td></tr>
+        <tr><td>Sports betting adapter (PSQF)</td><td class="num2">11%</td><td class="num2">64%</td><td class="num2">14%</td><td class="num2">21%</td></tr>
+        <tr><td>Casino and card games adapter (PGDA)</td><td class="num2">8%</td><td class="num2">20%</td><td class="num2">30%</td><td class="num2">50%</td></tr>
+        <tr><td>Player site and app rules</td><td class="num2">8%</td><td class="num2">20%</td><td class="num2">30%</td><td class="num2">50%</td></tr>
+        <tr><td>Responsible-gaming monitoring and limits</td><td class="num2">8%</td><td class="num2">17%</td><td class="num2">17%</td><td class="num2">67%</td></tr>
+        <tr><td>Accounting and reconciliation</td><td class="num2">7%</td><td class="num2">0%</td><td class="num2">0%</td><td class="num2">100%</td></tr>
+        <tr><td>Other cross-protocol rules</td><td class="num2">6%</td><td class="num2">44%</td><td class="num2">12%</td><td class="num2">44%</td></tr>
+        <tr><td>Back office and ADM reports</td><td class="num2">5%</td><td class="num2">56%</td><td class="num2">44%</td><td class="num2">0%</td></tr>
+        <tr><td>Certification delivery</td><td class="num2">5%</td><td class="num2">10%</td><td class="num2">30%</td><td class="num2">60%</td></tr>
+        <tr><td>Virtual sports adapter (PSV)</td><td class="num2">4%</td><td class="num2">0%</td><td class="num2">33%</td><td class="num2">67%</td></tr>
+        <tr><td>Horse racing adapter (PSIP)</td><td class="num2">4%</td><td class="num2">0%</td><td class="num2">50%</td><td class="num2">50%</td></tr>
+        <tr><td>Integrity check</td><td class="num2">4%</td><td class="num2">0%</td><td class="num2">0%</td><td class="num2">100%</td></tr>
+        <tr><td>ADM link, security and time</td><td class="num2">4%</td><td class="num2">40%</td><td class="num2">0%</td><td class="num2">60%</td></tr>
+        <tr><td>Hosting, recovery, logging</td><td class="num2">4%</td><td class="num2">27%</td><td class="num2">13%</td><td class="num2">60%</td></tr>
+        <tr><td>AML and fraud rules</td><td class="num2">4%</td><td class="num2">0%</td><td class="num2">50%</td><td class="num2">50%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub">The virtual and horse racing packages rest on two to three register rows each, so their shares are rough.</p>
 </section>
 
 <section aria-labelledby="map">
