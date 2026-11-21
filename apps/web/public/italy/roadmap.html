@@ -60,6 +60,7 @@ section{display:flex;flex-direction:column;gap:16px}
 .chip.fixed{background:var(--accent-soft);color:var(--accent)}
 .chip.est{background:var(--est-soft);color:var(--est)}
 .chip.unk{background:var(--unk-soft);color:var(--unk);border:1px dashed var(--mute)}
+.notice{color:var(--est);background:var(--est-soft);border-left:3px solid var(--est);padding:8px 12px;border-radius:0 6px 6px 0;font-weight:600;font-size:14px;max-width:70ch}
 .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--mute);align-items:center}
 
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
@@ -107,6 +108,17 @@ ol.flow>li:not(:last-child)::before{content:"";position:absolute;left:21px;top:4
 .keys{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
 .keys i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+table.tasks{min-width:640px}
+table.tasks td.tk{line-height:1.7;font-size:13px;min-width:190px}
+table.tasks td.tk a{color:var(--rule);font-weight:600;margin-right:6px}
+table.tasks td.open{color:var(--mute);font-style:italic}
+table.tasks tr.empty td{height:36px;background:repeating-linear-gradient(135deg,transparent 0 6px,var(--line) 6px 7px);opacity:.6}
+details.pkg{display:flex;flex-direction:column;gap:12px}
+details.pkg>summary{cursor:pointer;font-family:var(--font-head);font-weight:600;font-size:15px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;list-style:none}
+details.pkg>summary::-webkit-details-marker{display:none}
+details.pkg>summary::before{content:"\25B8";display:inline-block;width:1.2em;color:var(--accent)}
+details.pkg[open]>summary::before{content:"\25BE"}
+details.pkg>summary:focus-visible{outline:2px solid var(--rule);outline-offset:2px}
 .ready-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
 .ready-bar span{display:block;height:100%}
 .r1{background:var(--c3)}.r2{background:var(--c4)}.r3{background:var(--c5)}
@@ -126,6 +138,7 @@ footer{color:var(--mute);font-size:13px}
   <span class="eyebrow">Netbet Italy · Digitain platform · stakeholder briefing · 18 November 2026</span>
   <h1>From regulation to go-live</h1>
   <p class="lede">For the product, technology, compliance and Netbet teams: what ADM requires of the platform, the steps between a finished build and live play, and a realistic calendar. Netbet already operates in Italy on its current provider, so no licence deadline drives this plan. The pace is set by development and by waits outside our control.</p>
+  <p class="notice">The date estimates are still to be confirmed with a consultant and cross-checked with Netbet.</p>
   <div class="legend" aria-label="How to read the labels">
     <span><span class="chip fixed">Set by rule</span> written in the regulation</span>
     <span><span class="chip est">Estimate</span> average of industry sources</span>
@@ -159,10 +172,12 @@ footer{color:var(--mute);font-size:13px}
   <p class="sub">Share of the technical and product effort in the 147 register rows that need Digitain build work, as of 17 November 2026. Each of 15 work packages is weighted by its estimated effort, so a large package counts for more than a small one.</p>
   <div class="ready-bar" role="img" aria-label="25 percent of the effort is clear to start, 28 percent is clear but needs outside input, 47 percent is still unclear"><span class="r1" style="width:25%"></span><span class="r2" style="width:28%"></span><span class="r3" style="width:47%"></span></div>
   <div class="cards">
-    <div class="card"><span class="big r1t">25%</span><h3>Clear: can start now</h3><p>The requirement is fully described and nothing from ADM or Netbet is needed to begin. Examples: sending a bet to ADM and debiting only after its code returns, account records and 10-year retention, stake and odds rules, bonus status shown to the player, ADM reports, one UTC time source.</p></div>
+    <div class="card"><span class="big r1t">25%</span><h3>Clear: can start now</h3><p>The requirement is fully described and nothing from ADM or Netbet is needed to begin.</p></div>
     <div class="card"><span class="big r2t">28%</span><h3>Clear, needs outside input</h3><p>We know what to build, but we need something from ADM, Sogei or Netbet first: connection details, certificates, a test environment, or Netbet's confirmation of values and policies.</p></div>
     <div class="card"><span class="big r3t">47%</span><h3>Still unclear</h3><p>The requirement or the build is not settled yet. Either the platform's current coverage is still to be checked, or an open question to Netbet or ADM is unresolved, or the responsible-gaming measures still await agreement with Netbet and product.</p></div>
   </div>
+  <details class="pkg">
+  <summary>Work packages behind these shares</summary>
   <div class="tablewrap">
     <table>
       <thead><tr><th>Work package</th><th class="num2">Share of effort</th><th class="num2">Clear</th><th class="num2">Outside input</th><th class="num2">Unclear</th></tr></thead>
@@ -186,30 +201,39 @@ footer{color:var(--mute);font-size:13px}
     </table>
   </div>
   <p class="sub">The virtual and horse racing packages rest on two to three register rows each, so their shares are rough.</p>
+  </details>
 </section>
 
 <section aria-labelledby="map">
   <h2 id="map">1. What ADM requires, by platform area</h2>
-  <p class="sub">Each row is a part of the platform. It shows what ADM requires, which document sets it, which message carries it to ADM, and what the verification lab checks. The documents are: the Technical Rules, the concession agreement, the gaming-account contract, the verification-body guidelines, the casino game decree and the protocol manuals.</p>
+  <p class="sub">What ADM requires of each part of the platform, the message that carries it to ADM, and the Jira tasks that cover it. Empty rows at the bottom are tasks still to be opened.</p>
+  <details class="pkg">
+  <summary>Show the requirements and their tasks</summary>
   <div class="tablewrap">
-    <table>
-      <thead><tr><th>Platform area</th><th>What ADM requires</th><th>Set by</th><th>Message to ADM</th><th>What the lab checks</th></tr></thead>
+    <table class="tasks">
+      <thead><tr><th>Platform area</th><th>What ADM requires</th><th>Message to ADM</th><th>Tasks</th></tr></thead>
       <tbody>
-        <tr><td class="area">Player site and apps</td><td>Italian language, age and responsible-gaming notices, limit and self-exclusion tools, session time-out.</td><td>Technical Rules, concession agreement</td><td><span class="pill none">No message</span> The site's integrity digest goes through PACG.</td><td>The site and apps behave as the rules describe, on devices as well as the web.</td></tr>
-        <tr><td class="area">Gaming account</td><td>Account opened at ADM before activation. Login checked with ADM at every session. Every deposit, withdrawal, bonus and reversal recorded at ADM before the balance moves. Limits, self-exclusion and account states kept in step with ADM.</td><td>Technical Rules, gaming-account contract</td><td><span class="pill">PACG 3.3</span></td><td>Identity data, limits, self-exclusion and account states, and 10-year retention.</td></tr>
-        <tr><td class="area">Sports betting</td><td>Events created at ADM. Each bet sent to ADM and accepted and debited only after ADM returns the ticket ID.</td><td>Technical Rules</td><td><span class="pill">PSQF 5.2</span></td><td>Bet flow, settlement, cash-out, results.</td></tr>
-        <tr><td class="area">Virtual sports</td><td>Schedule and events opened at ADM. The virtual platform is verified by Sogei.</td><td>Technical Rules, Sogei procedure</td><td><span class="pill">PSV 2.0</span></td><td>Only the integration with the rest of the system.</td></tr>
-        <tr><td class="area">Horse racing</td><td>Only races and bet types of ADM's official programme, fixed odds only.</td><td>Technical Rules</td><td><span class="pill">PSIP 3.0</span></td><td>Bet flow and settlement.</td></tr>
-        <tr><td class="area">Casino and card games</td><td>Game session opened at ADM. Each amount moved into a session accepted before play. Rounds reported at least daily. Minimum payout and game rules set by decree.</td><td>Technical Rules, casino game decree</td><td><span class="pill">PGDA 3.1.0</span></td><td>Session flow, random number generator, payout and game rules.</td></tr>
-        <tr><td class="area">Integrity checks</td><td>Digests of the installed software sent to ADM daily and after each patch. A component that keeps failing is blocked after 15 calendar days.</td><td>Technical Rules, verification-body guidelines</td><td><span class="pill">PACG 6.7</span><span class="pill">Game protocols</span></td><td>The check system itself, and the digests the lab issues for every critical file.</td></tr>
-        <tr><td class="area">Accounting</td><td>Figures per game type that match ADM's own. The platform requests ADM's accounting statements and reconciles each day.</td><td>Technical Rules</td><td><span class="pill">PSQF 8000/8001</span><span class="pill">PSV 9200</span><span class="pill">PSIP 3500/3600</span><span class="pill">PGDA 800</span></td><td>That the figures reconcile with ADM's.</td></tr>
-        <tr><td class="area">Back office and reports</td><td>ADM can query all stored data for any period it defines. Results within 48 hours, exportable. Account reports on request.</td><td>Technical Rules</td><td><span class="pill none">No message</span></td><td>The reports end to end, on complete platform data.</td></tr>
-        <tr><td class="area">Link and security</td><td>Dedicated line or VPN to Sogei, redundant, in Netbet's name. Each protocol's own signature. All components on one UTC time source.</td><td>Technical Rules, protocol manuals</td><td><span class="pill none">Carries every message</span></td><td>Connectivity and message security with Sogei's test environment.</td></tr>
-        <tr><td class="area">Hosting and continuity</td><td>Infrastructure in the European Economic Area. Data encrypted in transit and at rest. Disaster-recovery copy at a separate site within 120 seconds.</td><td>Technical Rules</td><td><span class="pill none">No message</span></td><td>Documents and a functional check of the recovery set-up.</td></tr>
+        <tr><td class="area">Player site and apps</td><td>Italian language, age and responsible-gaming notices, limit and self-exclusion tools, session time-out.</td><td>None</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375441" target="_blank" rel="noopener">CHG-375441</a> Time-out<br><a href="https://jirasd.digitain.com/browse/CHG-375442" target="_blank" rel="noopener">CHG-375442</a> Session alerts<br><a href="https://jirasd.digitain.com/browse/CHG-375443" target="_blank" rel="noopener">CHG-375443</a> Free-play demo</td></tr>
+        <tr><td class="area">Gaming account</td><td>Account opened at ADM, login checked at every session, every money movement recorded at ADM before the balance moves.</td><td>PACG 3.3</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375322" target="_blank" rel="noopener">CHG-375322</a> PACG integration<br><a href="https://jirasd.digitain.com/browse/CHG-375899" target="_blank" rel="noopener">CHG-375899</a> Login security<br><a href="https://jirasd.digitain.com/browse/CHG-375897" target="_blank" rel="noopener">CHG-375897</a> Account records<br><a href="https://jirasd.digitain.com/browse/CHG-376993" target="_blank" rel="noopener">CHG-376993</a> Account states<br><a href="https://jirasd.digitain.com/browse/CHG-375898" target="_blank" rel="noopener">CHG-375898</a> Bonuses</td></tr>
+        <tr><td class="area">Sports betting</td><td>A bet is accepted and debited only after ADM returns its ticket ID.</td><td>PSQF 5.2</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375323" target="_blank" rel="noopener">CHG-375323</a> PSQF integration<br><a href="https://jirasd.digitain.com/browse/CHG-375896" target="_blank" rel="noopener">CHG-375896</a> Stake and odds rules</td></tr>
+        <tr><td class="area">Virtual sports</td><td>Schedule and events opened at ADM. The platform is verified by Sogei.</td><td>PSV 2.0</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375324" target="_blank" rel="noopener">CHG-375324</a> PSV integration</td></tr>
+        <tr><td class="area">Horse racing</td><td>Only ADM's official programme, fixed odds.</td><td>PSIP 3.0</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375325" target="_blank" rel="noopener">CHG-375325</a> PSIP integration</td></tr>
+        <tr><td class="area">Casino and card games</td><td>Sessions opened at ADM, rounds reported at least daily.</td><td>PGDA 3.1.0</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375326" target="_blank" rel="noopener">CHG-375326</a> PGDA integration</td></tr>
+        <tr><td class="area">Responsible gaming</td><td>Spot players at risk and apply stricter limits to them.</td><td>None for operator limits</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-376845" target="_blank" rel="noopener">CHG-376845</a> Risk monitoring <span class="chip unk">Draft</span></td></tr>
+        <tr><td class="area">Integrity checks</td><td>Software fingerprints sent to ADM daily and after each patch.</td><td>PACG 6.7 and the game protocols</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375321" target="_blank" rel="noopener">CHG-375321</a> Common rules <span class="chip unk">Draft</span></td></tr>
+        <tr><td class="area">Accounting</td><td>Figures per game type that reconcile with ADM's own.</td><td>One accounting message per game protocol</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375321" target="_blank" rel="noopener">CHG-375321</a> Common rules <span class="chip unk">Draft</span></td></tr>
+        <tr><td class="area">Back office and reports</td><td>ADM can query stored data, with results in 48 hours, and ask for account reports.</td><td>None</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375897" target="_blank" rel="noopener">CHG-375897</a> Account records</td></tr>
+        <tr><td class="area">Link and security</td><td>Secure line to Sogei, each protocol's signature, one UTC time source.</td><td>Carries every message</td><td class="tk"><a href="https://jirasd.digitain.com/browse/CHG-375321" target="_blank" rel="noopener">CHG-375321</a> Common rules <span class="chip unk">Draft</span></td></tr>
+        <tr><td class="area">Hosting and continuity</td><td>EEA location, encryption, disaster-recovery copy within 120 seconds.</td><td>None</td><td class="tk open">Not opened yet</td></tr>
+        <tr class="empty"><td></td><td></td><td></td><td></td></tr>
+        <tr class="empty"><td></td><td></td><td></td><td></td></tr>
+        <tr class="empty"><td></td><td></td><td></td><td></td></tr>
+        <tr class="empty"><td></td><td></td><td></td><td></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="sub">Out of scope for this project: retail, bingo, pool betting, betting exchange and poker tournaments. A separate page shows the same areas as an architecture diagram next to the platform's services.</p>
+  <p class="sub">Out of scope for this project: retail, bingo, pool betting, betting exchange and poker tournaments.</p>
+  </details>
 </section>
 
 <section aria-labelledby="flow">
@@ -340,7 +364,7 @@ footer{color:var(--mute);font-size:13px}
         <tr><td>Lab testing, full platform</td><td class="num2">3 months</td><td class="num2">4.5 months</td><td class="num2">6 months</td><td><span class="chip est">Estimate</span> Industry sources give 3 to 6 months. Sogei sessions run inside this window.</td></tr>
         <tr><td>ADM review of the lab result</td><td class="num2">4 weeks</td><td class="num2">8 weeks</td><td class="num2">12 weeks</td><td><span class="chip unk">Not published</span> Allowance borrowed from other regulators.</td></tr>
         <tr><td>Production check</td><td class="num2">2 weeks</td><td class="num2">2 weeks</td><td class="num2">2 weeks</td><td><span class="chip fixed">Set by rule</span> 5 days' notice, plus our own allowance for preparation.</td></tr>
-        <tr><td><b>Go-live</b></td><td class="num2"><b>about Nov 2027</b></td><td class="num2"><b>about May 2028</b></td><td class="num2"><b>about Oct 2028</b></td><td>Fixes and repeat test sessions add time and are not included.</td></tr>
+        <tr><td><b>Go-live</b></td><td class="num2"><b>about Nov 2027</b></td><td class="num2"><b>about May 2028</b></td><td class="num2"><b>about Oct 2028</b></td><td>Time for fixes and repeat test sessions is not included.</td></tr>
       </tbody>
     </table>
   </div>
