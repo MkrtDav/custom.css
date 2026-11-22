@@ -10,7 +10,7 @@ export default {
     const url = new URL(request.url);
     const prefix = SUBSITES[url.hostname];
     if (prefix) {
-      url.pathname = url.pathname === "/" ? prefix : prefix + url.pathname;
+      url.pathname = prefix + url.pathname;
       const res = await env.ASSETS.fetch(new Request(url, request));
       const loc = res.headers.get("Location");
       if (loc) {
