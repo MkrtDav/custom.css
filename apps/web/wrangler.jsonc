@@ -11,6 +11,7 @@
   "routes": [
     { "pattern": "stakeholders.cc", "custom_domain": true },
     { "pattern": "www.stakeholders.cc", "custom_domain": true },
-    { "pattern": "italy.stakeholders.cc", "custom_domain": true }
+    { "pattern": "italy.stakeholders.cc", "custom_domain": true },
+    { "pattern": "dev.italy.stakeholders.cc", "custom_domain": true }
   ]
 }

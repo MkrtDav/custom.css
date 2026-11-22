@@ -1,6 +1,9 @@
-// One Worker serves stakeholders.cc, www.stakeholders.cc and italy.stakeholders.cc.
-// Files for italy.stakeholders.cc live in public/italy/.
-const SUBSITES = { "italy.stakeholders.cc": "/italy" };
+// One Worker serves stakeholders.cc, www, italy and dev.italy.stakeholders.cc.
+// Files: italy -> public/italy/, dev.italy -> public/dev-italy/.
+const SUBSITES = {
+  "italy.stakeholders.cc": "/italy",
+  "dev.italy.stakeholders.cc": "/dev-italy",
+};
 
 export default {
   async fetch(request, env) {
